@@ -30,6 +30,18 @@ namespace DataLayer
             return result?.ToString(); // Trả về tên sân bay hoặc null
         }
 
+        //Kiểm tra sân bay có tồn tại
+        public bool IsSanBayExist(string tenSanBay)
+        {
+            string sql = "SELECT COUNT(*) FROM SanBay WHERE tenSB = @TenSanBay";
+            SqlParameter[] param = {
+                new SqlParameter("@TenSanBay", tenSanBay)
+            };
+
+            object result = provider.MyExecuteScalar(sql, CommandType.Text, param);
+            return Convert.ToInt32(result) > 0;
+        }
+
         // Thêm sân bay mới
         public bool AddSanBay(string tenSanBay, string tinh, string quocGia)
         {
@@ -43,6 +55,37 @@ namespace DataLayer
             return provider.MyExecuteNonQuery(sql, CommandType.Text, param) > 0;
         }
 
+        public bool UpdateSanBay(int maSB, string tenSB, string tinhThanh, string quocGia)
+        {
+            string sql = "UPDATE SanBay SET tenSB = @tenSB, tinhThanh = @tinhThanh, quocGia = @quocGia WHERE maSB = @maSB";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@tenSB", tenSB),
+            new SqlParameter("@tinhThanh", tinhThanh),
+            new SqlParameter("@quocGia", quocGia),
+            new SqlParameter("@maSB", maSB)
+            };
+
+            return provider.MyExecuteNonQuery(sql, CommandType.Text, parameters) > 0;
+        }
+
+        //Kiểm tra có tồn tại khóa ngoại hay không
+        public bool CheckForeignKey(int maSB)
+        {
+            string sql = "SELECT " +
+                "(SELECT COUNT(*) FROM TuyenBay WHERE sanBayDi = @maSB OR sanBayDen = @maSB) + " +
+                "(SELECT COUNT(*) FROM SanBayTrungGian WHERE maSB = @maSB)";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@maSB", maSB)
+            };
+
+            object result = provider.MyExecuteScalar(sql, CommandType.Text, parameters);
+            int count = Convert.ToInt32(result);
+            return count > 0;
+        }
 
         // Xóa sân bay
         public bool DeleteSanBay(int sanBayID)

@@ -104,6 +104,7 @@
     <Compile Include="Controllers\TuyenBayController.Designer.cs">
       <DependentUpon>TuyenBayController.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputHelper.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

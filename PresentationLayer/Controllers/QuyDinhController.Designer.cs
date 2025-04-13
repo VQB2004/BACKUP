@@ -31,14 +31,16 @@
             this.btnHuyThemSB = new System.Windows.Forms.Button();
             this.txtNoiDungQD = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnThemSB = new System.Windows.Forms.Button();
+            this.btnThemQD = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTenQuyDinh = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabDSTuyenBay = new System.Windows.Forms.DataGridView();
             this.btnCapNhatQD = new System.Windows.Forms.Button();
+            this.dgvQuyDinh = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.tabDSTuyenBay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvQuyDinh)).BeginInit();
             this.SuspendLayout();
             // 
             // btnHuyThemSB
@@ -46,12 +48,13 @@
             this.btnHuyThemSB.BackColor = System.Drawing.Color.Red;
             this.btnHuyThemSB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuyThemSB.ForeColor = System.Drawing.Color.White;
-            this.btnHuyThemSB.Location = new System.Drawing.Point(28, 539);
+            this.btnHuyThemSB.Location = new System.Drawing.Point(618, 539);
             this.btnHuyThemSB.Name = "btnHuyThemSB";
             this.btnHuyThemSB.Size = new System.Drawing.Size(117, 34);
             this.btnHuyThemSB.TabIndex = 123;
             this.btnHuyThemSB.Text = "Hủy";
             this.btnHuyThemSB.UseVisualStyleBackColor = false;
+            this.btnHuyThemSB.Click += new System.EventHandler(this.btnHuyThemSB_Click);
             // 
             // txtNoiDungQD
             // 
@@ -76,17 +79,18 @@
             this.label1.TabIndex = 119;
             this.label1.Text = "Quản lý quy định";
             // 
-            // btnThemSB
+            // btnThemQD
             // 
-            this.btnThemSB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnThemSB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemSB.ForeColor = System.Drawing.Color.White;
-            this.btnThemSB.Location = new System.Drawing.Point(798, 539);
-            this.btnThemSB.Name = "btnThemSB";
-            this.btnThemSB.Size = new System.Drawing.Size(117, 34);
-            this.btnThemSB.TabIndex = 118;
-            this.btnThemSB.Text = "Thêm";
-            this.btnThemSB.UseVisualStyleBackColor = false;
+            this.btnThemQD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnThemQD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemQD.ForeColor = System.Drawing.Color.White;
+            this.btnThemQD.Location = new System.Drawing.Point(215, 539);
+            this.btnThemQD.Name = "btnThemQD";
+            this.btnThemQD.Size = new System.Drawing.Size(117, 34);
+            this.btnThemQD.TabIndex = 118;
+            this.btnThemQD.Text = "Thêm";
+            this.btnThemQD.UseVisualStyleBackColor = false;
+            this.btnThemQD.Click += new System.EventHandler(this.btnThemQD_Click_1);
             // 
             // label5
             // 
@@ -157,22 +161,37 @@
             this.btnCapNhatQD.BackColor = System.Drawing.Color.Blue;
             this.btnCapNhatQD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapNhatQD.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhatQD.Location = new System.Drawing.Point(414, 539);
+            this.btnCapNhatQD.Location = new System.Drawing.Point(411, 539);
             this.btnCapNhatQD.Name = "btnCapNhatQD";
             this.btnCapNhatQD.Size = new System.Drawing.Size(134, 34);
             this.btnCapNhatQD.TabIndex = 126;
             this.btnCapNhatQD.Text = "Cập nhật";
             this.btnCapNhatQD.UseVisualStyleBackColor = false;
+            this.btnCapNhatQD.Click += new System.EventHandler(this.btnCapNhatQD_Click);
+            // 
+            // dgvQuyDinh
+            // 
+            this.dgvQuyDinh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvQuyDinh.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvQuyDinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvQuyDinh.Location = new System.Drawing.Point(37, 68);
+            this.dgvQuyDinh.Name = "dgvQuyDinh";
+            this.dgvQuyDinh.RowHeadersWidth = 51;
+            this.dgvQuyDinh.RowTemplate.Height = 24;
+            this.dgvQuyDinh.Size = new System.Drawing.Size(866, 362);
+            this.dgvQuyDinh.TabIndex = 127;
+            this.dgvQuyDinh.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQuyDinh_CellClick_1);
             // 
             // QuyDinhController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvQuyDinh);
             this.Controls.Add(this.btnCapNhatQD);
             this.Controls.Add(this.btnHuyThemSB);
             this.Controls.Add(this.txtNoiDungQD);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnThemSB);
+            this.Controls.Add(this.btnThemQD);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTenQuyDinh);
             this.Controls.Add(this.label6);
@@ -180,7 +199,9 @@
             this.Controls.Add(this.tabDSTuyenBay);
             this.Name = "QuyDinhController";
             this.Size = new System.Drawing.Size(943, 587);
+            this.Load += new System.EventHandler(this.QuyDinhController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabDSTuyenBay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvQuyDinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,12 +212,13 @@
         private System.Windows.Forms.Button btnHuyThemSB;
         private System.Windows.Forms.TextBox txtNoiDungQD;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnThemSB;
+        private System.Windows.Forms.Button btnThemQD;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtTenQuyDinh;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView tabDSTuyenBay;
         private System.Windows.Forms.Button btnCapNhatQD;
+        private System.Windows.Forms.DataGridView dgvQuyDinh;
     }
 }

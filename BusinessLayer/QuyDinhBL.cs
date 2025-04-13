@@ -11,11 +11,34 @@ namespace BusinessLayer
 {
     public class QuyDinhBL
     {
-        private QuyDinhDL quyDinh = new QuyDinhDL();
+        private QuyDinhDL quyDinhDL = new QuyDinhDL();
 
-        public List<QuyDinh> GetQuyDinhList()
+        public DataTable GetQuyDinhList()
         {
-            return quyDinh.GetQuyDinhList();
+            return quyDinhDL.GetQuyDinhList();
+        }
+
+        // Thêm quy định mới
+        public bool AddQuyDinh(string tenQD, int noiDungQD)
+        {
+            if (!quyDinhDL.IsQuyDinhExist(tenQD))
+            {
+                DateTime ngayCapNhat = DateTime.Now;
+                return quyDinhDL.AddQuyDinh(tenQD, noiDungQD);
+            }
+            return false;
+        }
+
+        // Xóa quy định theo mã
+        public bool XoaQuyDinh(int maQD)
+        {
+            return quyDinhDL.DeleteQuyDinh(maQD);
+        }
+
+        // Gọi hàm cập nhật từ DL
+        public bool UpdateQuyDinh(int maQD, string tenQD, int noiDungQD)
+        {
+            return quyDinhDL.UpdateQuyDinh(maQD, tenQD, noiDungQD);
         }
     }
 }
