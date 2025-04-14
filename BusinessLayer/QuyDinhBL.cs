@@ -38,6 +38,8 @@ namespace BusinessLayer
         // Gọi hàm cập nhật từ DL
         public bool UpdateQuyDinh(int maQD, string tenQD, int noiDungQD)
         {
+            if (quyDinhDL.IsQuyDinhExistForUpdate(maQD, tenQD))
+                return false;
             return quyDinhDL.UpdateQuyDinh(maQD, tenQD, noiDungQD);
         }
     }

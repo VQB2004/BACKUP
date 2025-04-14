@@ -42,6 +42,20 @@ namespace DataLayer
             return Convert.ToInt32(result) > 0;
         }
 
+        //Kiểm tra sân bay có tồn tại (dành cho update)
+        public bool IsSanBayExistForUpdate(int maSB, string tenSanBay)
+        {
+            string sql = "SELECT COUNT(*) FROM SanBay WHERE tenSB = @TenSanBay AND maSB != @MaSB";
+            SqlParameter[] param = {
+                new SqlParameter("@TenSanBay", tenSanBay),
+                new SqlParameter("@MaSB", maSB)
+            };
+
+            object result = provider.MyExecuteScalar(sql, CommandType.Text, param);
+            return Convert.ToInt32(result) > 0;
+        }
+
+
         // Thêm sân bay mới
         public bool AddSanBay(string tenSanBay, string tinh, string quocGia)
         {

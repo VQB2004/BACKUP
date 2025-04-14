@@ -96,6 +96,9 @@ namespace PresentationLayer.Controllers
             }
             else
             {
+                // Đảm bảo không click vào header
+                if (e.RowIndex < 0) return;
+
                 // Lấy dòng được click
                 DataGridViewRow selectedRow = dgvSanBay.Rows[e.RowIndex];
                 // Lấy giá trị từ cột theo tên cột
@@ -136,7 +139,7 @@ namespace PresentationLayer.Controllers
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tên sân bay đã tồn tại hoặc thông tin không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

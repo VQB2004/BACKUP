@@ -32,6 +32,20 @@ namespace DataLayer
             return Convert.ToInt32(result) > 0;
         }
 
+        //Kiểm tra quy định có tồn tại (dành cho update)
+        public bool IsQuyDinhExistForUpdate(int maQD, string tenQuyDinh)
+        {
+            string sql = "SELECT COUNT(*) FROM QuyDinh WHERE tenQD = @TenQuyDinh AND maQD != @MaQD";
+            SqlParameter[] param = {
+                new SqlParameter("@TenQuyDinh", tenQuyDinh),
+                new SqlParameter("@MaQD", maQD)
+            };
+
+            object result = provider.MyExecuteScalar(sql, CommandType.Text, param);
+            return Convert.ToInt32(result) > 0;
+        }
+
+
         //Thêm quy định mới
         //Thêm quy định mới (ngày cập nhật lấy DateTime.Now)
         public bool AddQuyDinh(string tenQD, int noidungQD)

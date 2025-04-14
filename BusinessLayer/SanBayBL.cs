@@ -45,6 +45,10 @@ namespace BusinessLayer
 
         public bool UpdateSanBay(int maSB, string tenSB, string tinhThanh, string quocGia)
         {
+            if (sanBayDL.IsSanBayExistForUpdate(maSB, tenSB))
+            {
+                return false;
+            }
             return sanBayDL.UpdateSanBay(maSB, tenSB, tinhThanh, quocGia);
         }
 
